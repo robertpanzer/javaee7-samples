@@ -41,6 +41,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.javaee7.jca.filewatch.FileEvent.Type.DELETED;
 
 /**
+ * This example showcases an inbound resource adapter that scans a directory in the file system
+ * for new, deleted or changed files.
+ * For every event of this kind a MDB implementing {@link org.javaee7.jca.filewatch.adapter.FileSystemWatcher}
+ * is called.
+ *
+ * MDBs for this interface adhere to the new JavaEE 7 empty interface style, that means the resource adapter
+ * dispatches events automatically to the correct method according to their annotations.
+ * Thereby MDBs for this resource adapter feel like JAX-RS resources.
+ *
+ * As actions initiated by the resource adapter are decoupled from the test
+ * the MDB implementation {@link org.javaee7.jca.filewatch.FileWatchingMDB} fires CDI events
+ * to transfer the events from the MDB to the test.
+ *
  * @author Robert Panzer (robert.panzer@me.com)
  * @author Bartosz Majsak (bartosz.majsak@gmail.com)
  */
